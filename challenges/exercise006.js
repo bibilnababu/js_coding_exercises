@@ -6,6 +6,16 @@
  */
 export const sumMultiples = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
+  //let sum = 0;
+  //for (let num of arr) {
+  //if (num % 3 === 0 || num % 5 === 0) {
+  //    sum += num;
+  // }
+  //}
+  // return sum;
+  return arr
+    .filter((num) => num % 3 === 0 || num % 5 === 0)
+    .reduce((total, current) => total + current, 0);
 };
 
 /**
@@ -15,6 +25,13 @@ export const sumMultiples = (arr) => {
  */
 export const isValidDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
+  let validDNA = "CGTA";
+  for (let char of str) {
+    if (!validDNA.includes(char)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
@@ -24,6 +41,24 @@ export const isValidDNA = (str) => {
  */
 export const getComplementaryDNA = (str) => {
   if (str === undefined) throw new Error("str is required");
+  let complementaryDNA = "";
+  for (let char of str) {
+    switch (char) {
+      case "A":
+        complementaryDNA += "T";
+        break;
+      case "T":
+        complementaryDNA += "A";
+        break;
+      case "C":
+        complementaryDNA += "G";
+        break;
+      case "G":
+        complementaryDNA += "C";
+        break;
+    }
+  }
+  return complementaryDNA;
 };
 
 /**
@@ -33,6 +68,15 @@ export const getComplementaryDNA = (str) => {
  */
 export const isItPrime = (n) => {
   if (n === undefined) throw new Error("n is required");
+  if (n < 2) {
+    return false;
+  }
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 };
 
 /**
@@ -49,6 +93,12 @@ export const isItPrime = (n) => {
 export const createMatrix = (n, fill) => {
   if (n === undefined) throw new Error("n is required");
   if (fill === undefined) throw new Error("fill is required");
+  let matrix = [];
+  for (let i = 0; i < n; i++) {
+    let row = new Array(n).fill(fill);
+    matrix.push(row);
+  }
+  return matrix;
 };
 
 /**
@@ -66,4 +116,14 @@ export const createMatrix = (n, fill) => {
 export const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  //variable for staffworking on that day
+  let numberOfStaff = 0;
+  //foreach to iterate through staff array
+  staff.forEach((employee) => {
+    // checks employee rota includes given day
+    if (employee.rota.includes(day)) {
+      numberOfStaff++;
+    }
+  });
+  return numberOfStaff >= 3;
 };
