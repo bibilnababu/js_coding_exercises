@@ -1,4 +1,4 @@
-import { typeOf } from "react-is";
+//import { typeOf } from "react-is";
 
 export function getSquares(nums) {
   if (nums === undefined) throw new Error("nums is required");
@@ -10,7 +10,7 @@ export function camelCaseWords(words) {
   if (words === undefined) throw new Error("words is required");
   // Your code here!
   let camelCased = words[0];
-  for (var i = 1; i < words.length; i++) {
+  for (let i = 1; i < words.length; i++) {
     camelCased += words[i].charAt(0).toUpperCase() + words[i].slice(1);
   }
   return camelCased;
@@ -38,7 +38,7 @@ export function duplicateNumbers(arr1, arr2) {
   if (arr2 === undefined) throw new Error("arr2 is required");
   // Your code here!
   var duplicates = [];
-    for (var i = 0; i < arr1.length; i++) {
+    for (let i = 0; i < arr1.length; i++) {
         if (arr2.indexOf(arr1[i]) !== -1 && duplicates.indexOf(arr1[i]) === -1) {
             duplicates.push(arr1[i]);
         }

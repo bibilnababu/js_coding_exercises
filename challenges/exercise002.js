@@ -19,20 +19,14 @@ export function getBusNumbers(people) {
 export function countSheep(arr) {
   if (arr === undefined) throw new Error("arr is required");
   // Your code here!
-  var count=0;
-  for(let i=0;i<arr.length;i++){
-  if(arr[i]==="sheep"){
-    count+=1;
-  } 
-  }
-return count;
+  return arr.filter(val => val === "sheep").length;
 }
 
 export function hasMPostCode(person) {
   if (person === undefined) throw new Error("person is required");
   // Your code here!
-  if(person.address.postCode.startsWith("M") && person.address.city === "Manchester")
-  return true;
-  else
-  return false;
+  return (person.address.postCode.startsWith("M") && person.address.city === "Manchester")
+  // return true;
+  // else
+  // return false;
 }

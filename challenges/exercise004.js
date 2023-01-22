@@ -2,7 +2,7 @@ export function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
   // Your code here
   let smallNums = [];
-  for (var i = 0; i < nums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     if (nums[i] < 1) {
       smallNums.push(nums[i]);
     }
@@ -15,7 +15,7 @@ export function findNamesBeginningWith(names, char) {
   if (!char) throw new Error("char is required");
   // Your code here
   var filteredNames = [];
-  for (var i = 0; i < names.length; i++) {
+  for (let i = 0; i < names.length; i++) {
     if (names[i][0].toUpperCase() === char.toUpperCase()) {
       filteredNames.push(names[i]);
     }
@@ -39,7 +39,7 @@ export function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
   // Your code here
   var integers = [];
-  for (var i = 0; i < nums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     if (Number.isInteger(nums[i])) {
       integers.push(nums[i]);
     }
