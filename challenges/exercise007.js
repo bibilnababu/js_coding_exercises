@@ -4,6 +4,7 @@
  */
 export const sumDigits = (n) => {
   if (n === undefined) throw new Error("n is required");
+  return [...n.toString()].reduce((sum, current) => sum + parseInt(current), 0);
 };
 
 /**
@@ -15,13 +16,25 @@ export const sumDigits = (n) => {
  * @param {Number} step
  */
 export const createRange = (start, end, step) => {
+  let range = [];
+  
   if (start === undefined) throw new Error("start is required");
   if (end === undefined) throw new Error("end is required");
-  if (step === undefined)
-    console.log(
-      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
-    );
+  if (step === undefined) {
+    step = 1;
+  }
+
+  for (let i = start; i <= end; i += step) {
+    range.push(i);
+
+    //console.log(range);
+  }
+  return range;
 };
+/*console.log(
+      "FYI: Optional step parameter not provided. Remove this check once you've handled the optional step!"
+    );/*
+
 
 /**
  * This function takes an array of user objects and their usage in minutes of various applications. The format of the data should be as follows:
@@ -55,6 +68,16 @@ export const createRange = (start, end, step) => {
 export const getScreentimeAlertList = (users, date) => {
   if (users === undefined) throw new Error("users is required");
   if (date === undefined) throw new Error("date is required");
+  //filter method i used to filter users who have used more than 100 mints
+  return users
+    .filter((user) => {
+      const selectedDate = user.screenTime.find((time) => time.date === date);
+      if (!selectedDate) return false;
+      return (
+        Object.values(selectedDate.usage).reduce((acc, cur) => acc + cur) > 100
+      );
+    })
+    .map((user) => user.username);
 };
 
 /**
@@ -69,6 +92,21 @@ export const getScreentimeAlertList = (users, date) => {
  */
 export const hexToRGB = (hexStr) => {
   if (hexStr === undefined) throw new Error("hexStr is required");
+  // check if the hex code is valid
+  if (!/^#?[0-9A-F]{6}$/i.test(hexStr)) return "Invalid Hexadecimal code";
+
+  // convert hexStr to uppercase
+  hexStr = hexStr.toUpperCase();
+
+  // remove # if present
+  if (hexStr.indexOf("#") === 0) hexStr = hexStr.slice(1);
+
+  // get the red, green, blue values
+  const red = parseInt(hexStr.substring(0, 2), 16);
+  const green = parseInt(hexStr.substring(2, 4), 16);
+  const blue = parseInt(hexStr.substring(4, 6), 16);
+
+  return `rgb(${red},${green},${blue})`;
 };
 
 /**
@@ -83,4 +121,28 @@ export const hexToRGB = (hexStr) => {
  */
 export const findWinner = (board) => {
   if (board === undefined) throw new Error("board is required");
+  // Check rows for a winner
+  for (let i = 0; i < board.length; i++) {
+    if (board[i][0] === board[i][1] && board[i][1] === board[i][2]) {
+      return board[i][0];
+    }
+  }
+
+  // Check columns for a winner
+  for (let i = 0; i < board.length; i++) {
+    if (board[0][i] === board[1][i] && board[1][i] === board[2][i]) {
+      return board[0][i];
+    }
+  }
+
+  // Check diagonals for a winner
+  if (board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+    return board[0][0];
+  }
+  if (board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+    return board[0][2];
+  }
+
+  // No winner
+  return null;
 };
