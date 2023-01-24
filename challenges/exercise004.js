@@ -1,50 +1,25 @@
 export function findSmallNums(nums) {
   if (!nums) throw new Error("nums is required");
-  // Your code here
-  let smallNums = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] < 1) {
-      smallNums.push(nums[i]);
-    }
-  }
-  return smallNums;
+  return nums.filter(num => num < 1);
 }
 
 export function findNamesBeginningWith(names, char) {
   if (!names) throw new Error("names is required");
   if (!char) throw new Error("char is required");
   // Your code here
-  var filteredNames = [];
-  for (let i = 0; i < names.length; i++) {
-    if (names[i][0].toUpperCase() === char.toUpperCase()) {
-      filteredNames.push(names[i]);
-    }
-  }
-  return filteredNames;
+  return names.filter(name => name[0].toUpperCase() === char.toUpperCase());
 }
 
 export function findVerbs(words) {
   if (!words) throw new Error("words is required");
-  // Your code here
-  var verbWords = [];
-  for (var i = 0; i < words.length; i++) {
-    if (words[i].includes("to ")) {
-      verbWords.push(words[i]);
-    }
-  }
-  return verbWords;
+  // includes method checks if the string contains given substring
+  return words.filter((word) => word.includes("to "));
 }
 
 export function getIntegers(nums) {
   if (!nums) throw new Error("nums is required");
   // Your code here
-  var integers = [];
-  for (let i = 0; i < nums.length; i++) {
-    if (Number.isInteger(nums[i])) {
-      integers.push(nums[i]);
-    }
-  }
-  return integers;
+  return nums.filter((num) => Number.isInteger(num));
 }
 
 export function getCities(users) {
@@ -62,13 +37,15 @@ export function findSentencesContaining(sentences, str) {
   if (!sentences) throw new Error("sentences is required");
   if (!str) throw new Error("str is required");
   // Your code here
-  return sentences.filter(sentence => sentence.toLowerCase().includes(str.toLowerCase()));
+  return sentences.filter((sentence) =>
+    sentence.toLowerCase().includes(str.toLowerCase())
+  );
 }
 
 export function getLongestSides(triangles) {
   if (!triangles) throw new Error("triangles is required");
   // Your code here
-  return triangles.map(triangle => {
+  return triangles.map((triangle) => {
     return Math.max(...triangle);
   });
 }
