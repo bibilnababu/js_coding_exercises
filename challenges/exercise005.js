@@ -2,30 +2,16 @@ export const findNextNumber = (nums, n) => {
   if (nums === undefined) throw new Error("nums is required");
   if (n === undefined) throw new Error("n is required");
   // Your code here!
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] === n) {
-      if (i === nums.length - 1) {
-        return null;
-      } else {
-        return nums[i + 1];
-      }
-    }
-  }
-  return null;
+  const index = nums.findIndex((num) => num === n);
+  return index === -1 || index === nums.length - 1 ? null : nums[index + 1];
 };
 
 export const count1sand0s = (str) => {
   if (str === undefined) throw new Error("str is required");
   // Your code here!
   let count = { 1: 0, 0: 0 };
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] === "1") {
-      count[1]++;
-    } else if (str[i] === "0") {
-      count[0]++;
-    }
-  }
-  return count;
+  str.split('').map(val => count[val] = count[val] ? count[val]+1 : 1)
+return count;
 };
 
 export const reverseNumber = (n) => {
@@ -63,31 +49,16 @@ export const findNeedle = (haystack, searchTerm) => {
   if (searchTerm === undefined) throw new Error("searchTerm is required");
   // Your code here!
   searchTerm = searchTerm.toLowerCase();
-  for (let key in haystack) {
-    if (
-      typeof haystack[key] === "string" &&
-      haystack[key].toLowerCase().includes(searchTerm)
-    ) {
-      return true;
-    }
-  }
-  return false;
+  return Object.values(haystack).some(val => typeof val === 'string' && val.toLowerCase().includes(searchTerm));
 };
 
 export const getWordFrequencies = (str) => {
   if (str === undefined) throw new Error("str is required");
   // Your code here!
+  let words = str.toLowerCase().replace(/[^\w\s]/gi, "").split(" ");
   const frequencies = {};
-  let words = str
-    .toLowerCase()
-    .replace(/[^\w\s]/gi, "")
-    .split(" ");
-  for (let i = 0; i < words.length; i++) {
-    if (frequencies[words[i]] === undefined) {
-      frequencies[words[i]] = 1;
-    } else {
-      frequencies[words[i]] += 1;
-    }
-  }
+  words.forEach(word => {
+    frequencies[word] = (frequencies[word] || 0) + 1;
+  });
   return frequencies;
 };

@@ -6,13 +6,6 @@
  */
 export const sumMultiples = (arr) => {
   if (arr === undefined) throw new Error("arr is required");
-  //let sum = 0;
-  //for (let num of arr) {
-  //if (num % 3 === 0 || num % 5 === 0) {
-  //    sum += num;
-  // }
-  //}
-  // return sum;
   return arr
     .filter((num) => num % 3 === 0 || num % 5 === 0)
     .reduce((total, current) => total + current, 0);
@@ -117,13 +110,13 @@ export const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
   //variable for staffworking on that day
-  let numberOfStaff = 0;
+    let numberOfStaff = 0;
   //foreach to iterate through staff array
-  staff.forEach((employee) => {
+    staff.forEach((employee) => {
     // checks employee rota includes given day
-    if (employee.rota.includes(day)) {
-      numberOfStaff++;
-    }
-  });
+      if (employee.rota.includes(day)) {
+        numberOfStaff++;
+      }
+    });
   return numberOfStaff >= 3;
 };
